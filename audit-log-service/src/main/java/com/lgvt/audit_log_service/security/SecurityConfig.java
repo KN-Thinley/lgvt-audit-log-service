@@ -18,8 +18,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/api/audit-log").hasAnyAuthority("ADMIN", "SUPER_ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/audit-log").hasAnyAuthority("ADMIN", "SUPER_ADMIN", "VOTER")
+                .requestMatchers(HttpMethod.GET, "/api/audits").hasAnyAuthority("ADMIN", "SUPER_ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/audits").permitAll()
+                // .requestMatchers(HttpMethod.POST, "/api/audit-log").hasAnyAuthority("ADMIN", "SUPER_ADMIN", "VOTER")
                 .anyRequest().authenticated());
         httpSecurity.addFilterBefore(jwtAuthenticationFilter,
                 org.springframework.security.web.authentication.AnonymousAuthenticationFilter.class);

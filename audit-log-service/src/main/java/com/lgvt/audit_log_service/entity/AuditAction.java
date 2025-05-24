@@ -1,8 +1,19 @@
 package com.lgvt.audit_log_service.entity;
 
+import org.apache.http.auth.AUTH;
+
 public enum AuditAction {
-    USER_CREATE,
+    ADMIN_CREATE,
+    VOTER_CREATE,
+    VOTER_UPDATE,
+    VOTER_DELETE,
+    AUTH_SUCCESS,
     USER_UPDATE,
+    ADMIN_DELETE,
+    ADMIN_INVITE,
+    CANDIDATE_CREATE,
+    CANDIDATE_UPDATE,
+    CANDIDATE_DELETE,
     AUTH_FAILURE,
     VOTE_CAST,
     REPORT_EXPORT,
