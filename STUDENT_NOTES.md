@@ -794,7 +794,9 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    private String secretKey = "thisismysecret19897donottouctouchit8329373743hhdjssmma89202";
+    // NOTE: In production, NEVER hardcode secrets! Use environment variables instead.
+    // Example: @Value("${jwt.secret}") private String secretKey;
+    private String secretKey = "${JWT_SECRET_KEY}"; // Use environment variable
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -891,10 +893,10 @@ Decoded:
 # Application name - used by Eureka for service discovery
 spring.application.name=audit-log-service
 
-# Database connection settings
-spring.datasource.url=jdbc:postgresql://ep-delicate-paper-a4sp243v.us-east-1.aws.neon.tech/user_service_db?sslmode=require
-spring.datasource.username=user_service_db_owner
-spring.datasource.password=npg_20DtKcixOqFV
+# Database connection settings (use environment variables in production!)
+spring.datasource.url=${DATABASE_URL}
+spring.datasource.username=${DATABASE_USERNAME}
+spring.datasource.password=${DATABASE_PASSWORD}
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
