@@ -783,6 +783,7 @@ import java.util.stream.Collectors;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -1059,8 +1060,8 @@ WORKDIR /app
 # Copy the built JAR file into the container
 COPY target/audit-log-service-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose the application's port
-EXPOSE 8081
+# Expose the application's port (should match server.port in application.properties)
+EXPOSE 8086
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
