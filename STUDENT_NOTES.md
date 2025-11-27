@@ -794,9 +794,10 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    // NOTE: In production, NEVER hardcode secrets! Use environment variables instead.
-    // Example: @Value("${jwt.secret}") private String secretKey;
-    private String secretKey = "${JWT_SECRET_KEY}"; // Use environment variable
+    // SECURITY BEST PRACTICE: Never hardcode secrets in your code!
+    // Use Spring's @Value annotation to inject from environment variables:
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
